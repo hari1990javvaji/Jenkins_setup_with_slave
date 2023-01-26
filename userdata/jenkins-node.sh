@@ -4,6 +4,7 @@ set -x
 
 sudo yum install -y java-openjdk11
 sudo yum -y install git
+sudo yum -y install wget
 sudo sleep 120
 
 
