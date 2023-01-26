@@ -27,6 +27,6 @@ data "template_file" "userdata_jenkins_worker_linux" {
     jenkins_url      = "jenkins.robofarming.link"
     jenkins_username = "admin"
     jenkins_password = "password"
-    worker_pem       = data.local_file.jenkins_worker_pem.content
+    #worker_pem       = data.local_file.jenkins_worker_pem.content
   }
 }
