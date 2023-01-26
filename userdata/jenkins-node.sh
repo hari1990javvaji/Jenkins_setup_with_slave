@@ -102,7 +102,7 @@ EOF
   <numExecutors>$EXECUTORS</numExecutors>
   <mode>NORMAL</mode>
   <retentionStrategy class="hudson.slaves.RetentionStrategy\$Always"/>
-  <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.5">
+  <launcher class="hudson.plugins.sshslaves.verifiers.NonVerifyingKeyVerificationStrategy" plugin="ssh-slaves@1.5">
     <host>$SLAVE_IP</host>
     <port>$SSH_PORT</port>
     <credentialsId>$CRED_ID</credentialsId>
