@@ -106,7 +106,7 @@ resource "null_resource" "install_jenkins" {
 
 # null resource 
 resource "null_resource" "install_plugin" {
-  depends_on = [aws_instance.jenkins, null_resource.os_update]
+  depends_on = [aws_instance.jenkins, null_resource.os_update, null_resource.install_jenkins]
   connection {
     type        = "ssh"
     user        = "ec2-user"
