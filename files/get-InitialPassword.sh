@@ -53,7 +53,7 @@ EOF
   done
 
   echo "Admin config file created"
-  jenkins_admin_password="mysupersecretpassword"
+  jenkins_admin_password="password"
   admin_password=$(python /tmp/jenkinsHash.py ${jenkins_admin_password} 2>&1)
   
   # Please do not remove alter quote as it keeps the hash syntax intact or else while substitution, $<character> will be replaced by null
