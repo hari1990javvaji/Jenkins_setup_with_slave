@@ -73,6 +73,9 @@ function configure_jenkins_server ()
   # List of plugins that are needed to be installed 
   plugin_list="git-client git github-api github-oauth github MSBuild ssh-slaves workflow-aggregator ws-cleanup"
 
+  # remove existing plugins, if any ...
+  rm -rfv $plugin_list
+
   # Install the plugin
   for plugin in $plugin_list; do
       echo "installing plugin [$plugin] ..."
