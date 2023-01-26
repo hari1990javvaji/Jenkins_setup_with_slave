@@ -26,9 +26,8 @@ data "local_file" "jenkins_worker_pem" {
 
 data "template_file" "userdata_jenkins_worker_linux" {
   template = file("userdata/jenkins-node.tpl")
-
   vars {
-    jenkins_url      = var.domainName
+    jenkins_url      = "jenkins.robofarming.link"
     server_ip        = aws_instance.jenkins_server.private_ip
     jenkins_username = "admin"
     jenkins_password = "password"
