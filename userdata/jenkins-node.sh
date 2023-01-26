@@ -71,7 +71,7 @@ function slave_setup()
     done
 
     # Delete Credentials if present for respective slave machines
-    $jenkins_cmd delete-credentials system::system::jenkins _ $CRED_ID
+    #$jenkins_cmd delete-credentials system::system::jenkins _ $CRED_ID
 
     # Generating cred.xml for creating credentials on Jenkins server
     cat > /tmp/cred.xml <<EOF
