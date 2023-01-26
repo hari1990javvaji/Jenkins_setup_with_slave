@@ -14,7 +14,7 @@ function slave_setup()
     # Wait till jar file gets available
     ret=1
     while (( $ret != 0 )); do
-        wget -O /opt/jenkins-cli.jar http://${jenkins_url}:8080/jnlpJars/jenkins-cli.jar
+        sudo wget -O /opt/jenkins-cli.jar http://${jenkins_url}:8080/jnlpJars/jenkins-cli.jar
         ret=$?
 
         echo "jenkins cli ret [$ret]"
@@ -22,14 +22,14 @@ function slave_setup()
 
     ret=1
     while (( $ret != 0 )); do
-        wget -O /opt/slave.jar http://${jenkins_url}:8080/jnlpJars/slave.jar
+        sudo wget -O /opt/slave.jar http://${jenkins_url}:8080/jnlpJars/slave.jar
         ret=$?
 
         echo "jenkins slave ret [$ret]"
     done
     
-    mkdir -p /opt/jenkins-slave
-    chown -R ec2-user:ec2-user /opt/jenkins-slave
+    sudo mkdir -p /opt/jenkins-slave
+    sudo chown -R ec2-user:ec2-user /opt/jenkins-slave
 
     # Register_slave
     JENKINS_URL="http://${jenkins_url}:8080"
@@ -87,6 +87,7 @@ EOF
 
     # Creating credential using cred.xml
     cat /tmp/cred.xml | $jenkins_cmd create-credentials-by-xml system::system::jenkins _
+jenkins_cmd="java -jar /opt/jenkins-cli.jar -s http://jenkins.robofarming.link:8080/ -auth amin:password
 
     # For Deleting Node, used when testing
     $jenkins_cmd delete-node $NODE_NAME
