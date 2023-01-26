@@ -72,8 +72,8 @@ function configure_jenkins_server ()
 {
   # Jenkins cli
   echo "installing the Jenkins cli ..."
-  cp /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar /var/lib/jenkins/jenkins-cli.jar
-
+  wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+  cp jenkins-cli.jar /var/lib/jenkins/jenkins-cli.jar
   # Getting initial password
   jenkins_admin_password="mysupersecretpassword"
   PASSWORD="${jenkins_admin_password}"
