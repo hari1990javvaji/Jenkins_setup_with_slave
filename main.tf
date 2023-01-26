@@ -76,6 +76,10 @@ resource "null_resource" "os_update" {
       "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key",
       "sudo yum upgrade -y",
       "sleep 10"
+      "sudo yum install nc -y",
+      "sleep 10",
+      "sudo yum install xmlstarlet",
+      "sleep 10",            
     ]
   }
 }
@@ -97,8 +101,6 @@ resource "null_resource" "install_jenkins" {
       "sudo yum install jenkins -y",
       "sleep 10",
       "sudo systemctl restart jenkins",
-      "sleep 10",
-      "sudo yum install nc -y",
       "sleep 10",
       #"sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
     ]
