@@ -98,7 +98,32 @@ resource "null_resource" "install_jenkins" {
       "sleep 10",
       "sudo systemctl restart jenkins",
       "sleep 10",
-      "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
+      #"sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
+    ]
+  }
+}
+
+
+# null resource 
+resource "null_resource" "install_plugin" {
+  depends_on = [aws_instance.jenkins, null_resource.os_update]
+  connection {
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = file(var.private_key)
+    host        = aws_instance.jenkins.public_ip
+    timeout     = "20s"
+  }
+
+  provisioner "file" {
+    source      = "files/get-InitialPassword.sh"
+    destination = "/tmp/get-InitialPassword.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/get-InitialPassword.sh",
+      "sudo sh -x /tmp/get-InitialPassword.sh",
     ]
   }
 }
