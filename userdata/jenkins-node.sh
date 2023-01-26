@@ -2,7 +2,7 @@
 
 set -x
 
-sudo yum install -y java-openjdk11
+sudo yum install java-11-openjdk
 sudo yum -y install git
 sudo yum -y install wget
 sudo yum install xmlstarlet -y
