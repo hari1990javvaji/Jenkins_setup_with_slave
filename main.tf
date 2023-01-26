@@ -75,11 +75,11 @@ resource "null_resource" "os_update" {
       "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
       "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key",
       "sudo yum upgrade -y",
-      "sleep 10"
+      "sleep 10",
       "sudo yum install nc -y",
       "sleep 10",
       "sudo yum install xmlstarlet",
-      "sleep 10",            
+      "sleep 10",
     ]
   }
 }
