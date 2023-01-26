@@ -35,7 +35,7 @@ function updating_jenkins_master_password ()
   done
 # https://www.bcryptcalculator.com/encode
   echo "Admin config file created"
-  admin_password="$2a$10$1LOKaTM.4BdGvju2LsLK4ulAmLrDPr1xbegLVc1RIv9klz5q9TrZO"
+  admin_password='$2a$10$1LOKaTM.4BdGvju2LsLK4ulAmLrDPr1xbegLVc1RIv9klz5q9TrZO'
   
   # Please do not remove alter quote as it keeps the hash syntax intact or else while substitution, $<character> will be replaced by null
   xmlstarlet -q ed --inplace -u "/user/properties/hudson.security.HudsonPrivateSecurityRealm_-Details/passwordHash" -v '#jbcrypt:'"$admin_password" config.xml
