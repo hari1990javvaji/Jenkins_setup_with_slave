@@ -19,9 +19,9 @@ resource "aws_instance" "jenkins_node" {
   }
 }
 
-data "local_file" "jenkins_worker_pem" {
+/* data "local_file" "jenkins_worker_pem" {
   filename = file(var.private_key)
-}
+} */
 
 data "template_file" "userdata_jenkins_worker_linux" {
   template = file("userdata/jenkins-node.sh")
@@ -31,6 +31,6 @@ data "template_file" "userdata_jenkins_worker_linux" {
     jenkins_username = "admin"
     jenkins_password = "password"
     device_name      = "eth0"
-    worker_pem       = data.local_file.jenkins_worker_pem.content
+    worker_pem       = module.key_pair.key_name
   }
 }
