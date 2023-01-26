@@ -29,7 +29,6 @@ data "template_file" "userdata_jenkins_worker_linux" {
 
   vars = {
     jenkins_url      = "jenkins.robofarming.link"
-    server_ip        = aws_instance.jenkins_server.private_ip
     jenkins_username = "admin"
     jenkins_password = "password"
     worker_pem       = data.local_file.jenkins_worker_pem.content
