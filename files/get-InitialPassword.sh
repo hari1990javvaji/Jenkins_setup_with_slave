@@ -22,24 +22,6 @@ function wait_for_jenkins()
 
 function updating_jenkins_master_password ()
 {
-  cat > /tmp/jenkinsHash.py <<EOF
-import bcrypt
-import sys
-if not sys.argv[1]:
-  sys.exit(10)
-plaintext_pwd=sys.argv[1]
-encrypted_pwd=bcrypt.hashpw(sys.argv[1], bcrypt.gensalt(rounds=10, prefix=b"2a"))
-isCorrect=bcrypt.checkpw(plaintext_pwd, encrypted_pwd)
-if not isCorrect:
-  sys.exit(20);
-print "{}".format(encrypted_pwd)
-EOF
-
-  chmod +x /tmp/jenkinsHash.py
-  
-  # Wait till /var/lib/jenkins/users/admin* folder gets created
-  sleep 10
-
   cd /var/lib/jenkins/users/admin*
   pwd
   while (( 1 )); do
@@ -53,8 +35,7 @@ EOF
   done
 
   echo "Admin config file created"
-  jenkins_admin_password="password"
-  admin_password=$(python /tmp/jenkinsHash.py ${jenkins_admin_password} 2>&1)
+  admin_password="$2a$10$1LOKaTM.4BdGvju2LsLK4ulAmLrDPr1xbegLVc1RIv9klz5q9TrZO"
   
   # Please do not remove alter quote as it keeps the hash syntax intact or else while substitution, $<character> will be replaced by null
   xmlstarlet -q ed --inplace -u "/user/properties/hudson.security.HudsonPrivateSecurityRealm_-Details/passwordHash" -v '#jbcrypt:'"$admin_password" config.xml
@@ -75,7 +56,7 @@ function configure_jenkins_server ()
   wget http://localhost:8080/jnlpJars/jenkins-cli.jar
   cp jenkins-cli.jar /var/lib/jenkins/jenkins-cli.jar
   # Getting initial password
-  jenkins_admin_password="mysupersecretpassword"
+  jenkins_admin_password="password"
   PASSWORD="${jenkins_admin_password}"
   sleep 10
 
