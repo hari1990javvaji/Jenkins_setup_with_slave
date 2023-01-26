@@ -4,7 +4,7 @@ resource "aws_instance" "jenkins_node" {
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.web_traffic.name]
   key_name        = "jenkins"
-  user_data       = data.template_file.userdata_jenkins_worker_linux.rendered
+  /* user_data       = data.template_file.userdata_jenkins_worker_linux.rendered */
   tags = {
     Name = "Jenkins-node"
   }
@@ -20,7 +20,7 @@ resource "aws_instance" "jenkins_node" {
   filename = file(var.private_key)
 } */
 
-data "template_file" "userdata_jenkins_worker_linux" {
+/* data "template_file" "userdata_jenkins_worker_linux" {
   template = file("userdata/jenkins-node.sh")
 
   vars = {
@@ -30,4 +30,4 @@ data "template_file" "userdata_jenkins_worker_linux" {
     device_name      = "eth0"
     worker_pem       = "ccccccccccc"
   }
-}
+} */
