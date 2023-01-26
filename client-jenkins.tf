@@ -17,7 +17,7 @@ resource "aws_instance" "jenkins_node" {
 }
 
 data "local_file" "jenkins_worker_pem" {
-  filename = file(var.public_key)
+  filename = file(var.private_key)
 }
 
 data "template_file" "userdata_jenkins_worker_linux" {
