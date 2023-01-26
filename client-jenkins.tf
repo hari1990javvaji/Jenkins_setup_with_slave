@@ -24,7 +24,7 @@ resource "aws_instance" "jenkins_node" {
 } */
 
 data "template_file" "userdata_jenkins_worker_linux" {
-  template = file("${path.module / userdata / jenkins-node.sh}")
+  template = file(path.module / userdata / jenkins-node.sh)
 
   vars = {
     jenkins_url      = "jenkins.robofarming.link"
