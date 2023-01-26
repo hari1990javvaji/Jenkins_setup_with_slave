@@ -1,5 +1,5 @@
 # Slave "general builds"
-/* resource "aws_instance" "jenkins_node" {
+resource "aws_instance" "jenkins_node" {
   ami             = data.aws_ami.redhat.id
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.web_traffic.name]
@@ -14,7 +14,7 @@
     volume_type = "gp2"
     volume_size = 10
   }
-} */
+}
 
 /* data "local_file" "jenkins_worker_pem" {
   filename = file(var.private_key)
