@@ -88,7 +88,7 @@ EOF
 
     # Creating credential using cred.xml
     cat /tmp/cred.xml | $jenkins_cmd create-credentials-by-xml system::system::jenkins _
-jenkins_cmd="java -jar /opt/jenkins-cli.jar -s http://jenkins.robofarming.link:8080/ -auth amin:password
+    jenkins_cmd="java -jar /opt/jenkins-cli.jar -s http://jenkins.robofarming.link:8080/ -auth admin:password"
 
     # For Deleting Node, used when testing
     $jenkins_cmd delete-node $NODE_NAME
