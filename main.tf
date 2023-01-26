@@ -78,7 +78,7 @@ resource "null_resource" "os_update" {
       "sleep 10",
       "sudo yum install nc -y",
       "sleep 10",
-      "sudo yum install xmlstarlet",
+      "sudo yum install xmlstarlet -y",
       "sleep 10",
     ]
   }
