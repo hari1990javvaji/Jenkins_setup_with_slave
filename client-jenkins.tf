@@ -21,7 +21,7 @@ resource "aws_instance" "jenkins_node" {
 } */
 
 data "template_file" "userdata_jenkins_worker_linux" {
-  template = file("userdata/jenkins-node.sh")
+  template = file("userdata/jenkins-node.tpl")
 
   vars = {
     jenkins_url      = "jenkins.robofarming.link"
