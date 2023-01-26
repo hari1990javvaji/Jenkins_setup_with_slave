@@ -10,6 +10,7 @@ sudo sleep 120
 
 
 function slave_setup()
+
 {
     # Wait till jar file gets available
     ret=1
