@@ -31,6 +31,6 @@ data "template_file" "userdata_jenkins_worker_linux" {
     jenkins_username = "admin"
     jenkins_password = "password"
     device_name      = "eth0"
-    worker_pem       = module.key_pair.key_name
+    worker_pem       = module.key_pair.key_pair_name
   }
 }
