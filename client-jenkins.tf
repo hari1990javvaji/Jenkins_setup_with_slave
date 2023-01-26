@@ -14,10 +14,6 @@ resource "aws_instance" "jenkins_node" {
     volume_type = "gp2"
     volume_size = 10
   }
-  tags {
-    Name = "node general builds"
-    Tool = "Terraform"
-  }
 }
 
 data "local_file" "jenkins_worker_pem" {
