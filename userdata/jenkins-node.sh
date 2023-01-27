@@ -29,8 +29,8 @@ function slave_setup()
         echo "jenkins slave ret [$ret]"
     done
     
-    sudo mkdir -p /opt/jenkins-slave
-    sudo chown -R ec2-user:ec2-user /opt/jenkins-slave
+    sudo mkdir -p /home/ec2-user
+    sudo chown -R ec2-user:ec2-user /home/ec2-user
     # key generating #
     ssh-keygen -t rsa
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
@@ -46,7 +46,7 @@ function slave_setup()
 
     SLAVE_IP=$(ip -o -4 addr list ${device_name} | head -n1 | awk '{print $4}' | cut -d/ -f1)
     NODE_NAME=$(echo "jenkins-slave-linux-$SLAVE_IP" | tr '.' '-')
-    NODE_SLAVE_HOME="/opt/jenkins-slave"
+    NODE_SLAVE_HOME="/home/ec2-user"
     EXECUTORS=2
     SSH_PORT=22
 
