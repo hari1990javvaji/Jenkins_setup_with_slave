@@ -8,5 +8,5 @@ output "userdata" {
 
 output "key" {
   value     = data.aws_ssm_parameter.private_key.value
-  sensitive = false
+  sensitive = true
 }
