@@ -82,6 +82,18 @@ resource "null_resource" "os_update" {
     timeout     = "50s"
   }
 
+  provisioner "file" {
+    connection {
+      host        = aws_instance.jenkins.public_ip
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file(var.private_key)
+      timeout     = "50s"
+    }
+
+    source      = "~/.ssh"
+    destination = "/tmp/"
+  }
 
   provisioner "remote-exec" {
     inline = [
@@ -118,6 +130,9 @@ resource "null_resource" "install_jenkins" {
       "sudo systemctl restart jenkins",
       "sleep 10",
       #"sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
+      "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
+      "sudo chown -R jenkins:jenkins /var/lib/jenkins/",
+      "sudo chmod 0600 /var/lib/jenkins/.ssh/id*",
     ]
   }
 }
