@@ -36,6 +36,6 @@ data "template_file" "userdata_jenkins_worker_linux" {
     jenkins_username = "admin"
     jenkins_password = "password"
     device_name      = "eth0"
-    worker_pem       = data.aws_ssm_parameter.private_key.name
+    worker_pem       = data.aws_ssm_parameter.private_key.value
   }
 }
