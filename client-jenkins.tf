@@ -23,6 +23,11 @@ resource "aws_instance" "jenkins_node" {
   filename = file(var.private_key)
 } */
 
+data "aws_ssm_parameter" "private_key" {
+  name = "${module.key_pair.key_pair_name}-private"
+}
+
+
 data "template_file" "userdata_jenkins_worker_linux" {
   template = file("userdata/jenkins-node.sh")
 
@@ -31,6 +36,6 @@ data "template_file" "userdata_jenkins_worker_linux" {
     jenkins_username = "admin"
     jenkins_password = "password"
     device_name      = "eth0"
-    worker_pem       = module.key_pair.key_pair_name
+    worker_pem       = data.aws_ssm_parameter.private_key.name
   }
 }

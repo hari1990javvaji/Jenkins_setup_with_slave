@@ -36,6 +36,21 @@ module "key_pair" {
   public_key = file(var.public_key)
 }
 
+resource "aws_ssm_parameter" "private_key" {
+  name        = "${module.key_pair.key_pair_name}-private"
+  description = "private master key"
+  type        = "SecureString"
+  value       = file(var.private_key)
+}
+
+resource "aws_ssm_parameter" "public_key" {
+  name        = "${module.key_pair.key_pair_name}-public"
+  description = "public master key"
+  type        = "SecureString"
+  value       = file(var.public_key)
+}
+
+
 # resource block
 resource "aws_instance" "jenkins" {
   ami             = data.aws_ami.redhat.id
