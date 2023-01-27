@@ -31,7 +31,11 @@ function slave_setup()
     
     sudo mkdir -p /opt/jenkins-slave
     sudo chown -R ec2-user:ec2-user /opt/jenkins-slave
-
+    # key generating #
+    ssh-keygen -t rsa
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    chmod 700 ~/.ssh/authorized_keys
+    ######################
     # Register_slave
     JENKINS_URL="http://${jenkins_url}:8080"
 
