@@ -7,5 +7,5 @@ output "userdata" {
 }
 
 output "key" {
-  value = module.key_pair.key_pair_name
+  value = data.aws_ssm_parameter.private_key.value
 }
