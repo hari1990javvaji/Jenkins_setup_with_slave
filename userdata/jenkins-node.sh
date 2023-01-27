@@ -29,12 +29,12 @@ function slave_setup()
         echo "jenkins slave ret [$ret]"
     done
     
-    sudo mkdir -p /home/ec2-user
-    sudo chown -R ec2-user:ec2-user /home/ec2-user
+
     # key generating #
-    ssh-keygen -t rsa
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-    chmod 700 ~/.ssh/authorized_keys
+    echo ssh-keygen -t rsa
+    cat /home/ec2-user/.ssh/id_rsa.pub >> /home/ec2-user/.ssh/authorized_keys
+    chmod 700 /home/ec2-user/.ssh/authorized_keys
+    sudo chown -R ec2-user:ec2-user /home/ec2-user/.ssh
     ######################
     # Register_slave
     JENKINS_URL="http://${jenkins_url}:8080"
