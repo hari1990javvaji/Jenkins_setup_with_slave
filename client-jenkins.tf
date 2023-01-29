@@ -1,4 +1,4 @@
-/* # Slave "general builds"
+/*# Slave "general builds"
 
 resource "aws_instance" "jenkins_node" {
   ami             = data.aws_ami.redhat.id
@@ -23,7 +23,7 @@ resource "aws_instance" "jenkins_node" {
   filename = file(var.private_key)
 } */
 
-data "aws_ssm_parameter" "private_key" {
+/*data "aws_ssm_parameter" "private_key" {
   name       = "${module.key_pair.key_pair_name}-private"
   depends_on = [resource.aws_ssm_parameter.private_key]
 }
@@ -73,5 +73,4 @@ resource "null_resource" "install_jenkins_slave" {
       "sudo chmod 0600 /var/lib/jenkins/.ssh/id*",
     ]
   }
-} 
-*/
+}*/
