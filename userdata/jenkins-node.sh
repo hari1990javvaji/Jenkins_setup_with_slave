@@ -31,10 +31,10 @@ function slave_setup()
     
 
     # key generating #
-    echo ssh-keygen -t rsa
-    cat /home/ec2-user/.ssh/id_rsa.pub >> /home/ec2-user/.ssh/authorized_keys
-    chmod 700 /home/ec2-user/.ssh/authorized_keys
-    sudo chown -R ec2-user:ec2-user /home/ec2-user/.ssh
+    # sudo ssh-keygen -t rsa
+    # cat /home/ec2-user/.ssh/id_rsa.pub >> /home/ec2-user/.ssh/authorized_keys
+    # chmod 700 /home/ec2-user/.ssh/authorized_keys
+    # sudo chown -R ec2-user:ec2-user /home/ec2-user/.ssh
     ######################
     # Register_slave
     JENKINS_URL="http://${jenkins_url}:8080"
