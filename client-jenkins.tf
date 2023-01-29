@@ -64,7 +64,7 @@ resource "null_resource" "install_jenkins_slave" {
     source      = "~/.ssh"
     destination = "/tmp/"
   }
-  # https://kodekloud.com/community/t/while-installing-jenkins-on-vm-getting-below-error/86030/8
+
   provisioner "remote-exec" {
     inline = [
       "sleep 10",
