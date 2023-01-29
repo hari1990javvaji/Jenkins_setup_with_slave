@@ -40,7 +40,7 @@ function slave_setup()
 
     SLAVE_IP=$(ip -o -4 addr list ${device_name} | head -n1 | awk '{print $4}' | cut -d/ -f1)
     NODE_NAME=$(echo "jenkins-slave-linux-$SLAVE_IP" | tr '.' '-')
-    NODE_SLAVE_HOME="/home/ec2-user"
+    NODE_SLAVE_HOME="/var/lib/jenkins"
     EXECUTORS=2
     SSH_PORT=22
 
