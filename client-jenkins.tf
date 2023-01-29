@@ -1,4 +1,4 @@
-# Slave "general builds"
+/* # Slave "general builds"
 
 resource "aws_instance" "jenkins_node" {
   ami             = data.aws_ami.redhat.id
@@ -73,4 +73,5 @@ resource "null_resource" "install_jenkins_slave" {
       "sudo chmod 0600 /var/lib/jenkins/.ssh/id*",
     ]
   }
-}
+} 
+*/
