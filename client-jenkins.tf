@@ -37,7 +37,7 @@ data "template_file" "userdata_jenkins_worker_linux" {
   }
 }
 
-# null resource 
+/* # null resource 
 resource "null_resource" "install_jenkins_slave" {
   depends_on = [aws_instance.jenkins_node, data.template_file.userdata_jenkins_worker_linux]
   connection {
@@ -75,4 +75,4 @@ resource "null_resource" "install_jenkins_slave" {
       "sudo chown jenkins:jenkins -R /home/jenkins/.ssh" */
     ]
   }
-}
+} */
