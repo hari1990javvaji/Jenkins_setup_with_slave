@@ -104,7 +104,7 @@ EOF
     <host>$SLAVE_IP</host>
     <port>$SSH_PORT</port>
     <credentialsId>$CRED_ID</credentialsId>
-    <class="hudson.plugins.sshslaves.verifiers.ManuallyTrustedKeyVerificationStrategy"/>
+    <sshHostKeyVerificationStrategy class="hudson.plugins.sshslaves.verifiers.ManuallyTrustedKeyVerificationStrategy"/>
   </launcher>
   <label>$LABELS</label>
   <nodeProperties/>
