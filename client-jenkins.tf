@@ -64,11 +64,13 @@ resource "null_resource" "install_jenkins_slave" {
   provisioner "remote-exec" {
     inline = [
       "sleep 10",
-      "sudo mkdir -p /var/lib/jenkins",
-      "sudo chown -R ec2-user:ec2-user /var/lib/jenkins",
-      "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
-      "sudo chown -R ec2-user:ec2-user /var/lib/jenkins/",
-      "sudo chmod 0600 /var/lib/jenkins/.ssh/id*",
+      #"sudo mkdir -p /var/lib/jenkins",
+      #"sudo chown -R ec2-user:ec2-user /var/lib/jenkins",
+      #"sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
+      #"sudo chown -R ec2-user:ec2-user /var/lib/jenkins/",
+      #"sudo chmod 0600 /var/lib/jenkins/.ssh/id*",
+      "sudo adduser jenkins"
+      "cat /tmp/id_rsa.pub >> /home/jenkins/.ssh/authorized_keys"
     ]
   }
 }
