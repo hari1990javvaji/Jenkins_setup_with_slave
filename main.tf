@@ -131,7 +131,7 @@ resource "null_resource" "install_jenkins" {
       "sleep 10",
       "sudo mv /tmp/.ssh/id_rsa /home/ec2-user/.ssh &> /dev/null",
       "sudo mv /tmp/.ssh/id_rsa.pub /home/ec2-user/.ssh &> /dev/null",
-      "sudo chown -R jenkins:jenkins /var/lib/jenkins/",
+      #"sudo chown -R jenkins:jenkins /var/lib/jenkins/",
       "sudo chmod 0600 /home/ec2-user/.ssh/id*",
     ]
   }

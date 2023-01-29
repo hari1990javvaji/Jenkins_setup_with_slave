@@ -20,8 +20,8 @@ resource "aws_instance" "jenkins_node" {
 }
 
 data "aws_ssm_parameter" "private_key" {
-  name       = "${module.key_pair.key_pair_name}-private"
-  depends_on = [resource.aws_ssm_parameter.private_key]
+  name = "${module.key_pair.key_pair_name}-private"
+  #depends_on = [resource.aws_ssm_parameter.private_key]
 }
 
 
