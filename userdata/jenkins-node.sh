@@ -29,10 +29,6 @@ function slave_setup()
         echo "jenkins slave ret [$ret]"
     done
     
-
-    # key generating #
-    sudo mkdir -p /var/lib/jenkins
-    sudo chown -R ec2-user:ec2-user /var/lib/jenkins
     ######################
     # Register_slave
     JENKINS_URL="http://${jenkins_url}:8080"
