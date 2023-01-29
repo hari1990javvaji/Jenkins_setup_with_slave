@@ -40,3 +40,37 @@ data "template_file" "userdata_jenkins_worker_linux" {
     worker_pem       = data.aws_ssm_parameter.private_key.value
   }
 }
+
+# null resource 
+resource "null_resource" "install_jenkins_slave" {
+  depends_on = [aws_instance.jenkins_node, data.template_file.userdata_jenkins_worker_linux]
+  connection {
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = file(var.private_key)
+    host        = aws_instance.jenkins_node.public_ip
+    timeout     = "20s"
+  }
+
+  provisioner "file" {
+    connection {
+      host        = aws_instance.jenkins_node.public_ip
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file(var.private_key)
+      timeout     = "50s"
+    }
+
+    source      = "~/.ssh"
+    destination = "/tmp/"
+  }
+  # https://kodekloud.com/community/t/while-installing-jenkins-on-vm-getting-below-error/86030/8
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 10",
+      "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
+      "sudo chown -R ec2-user:ec2-user /var/lib/jenkins/",
+      "sudo chmod 0600 /var/lib/jenkins/.ssh/id*",
+    ]
+  }
+}
