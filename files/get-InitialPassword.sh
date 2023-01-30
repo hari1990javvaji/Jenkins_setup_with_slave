@@ -66,7 +66,7 @@ function configure_jenkins_server ()
   cd $jenkins_dir
 
   # Open JNLP port
-  xmlstarlet -q ed --inplace -u "/hudson/slaveAgentPort" -v 33453 config.xml
+  #xmlstarlet -q ed --inplace -u "/hudson/slaveAgentPort" -v 33453 config.xml
 
   cd $plugins_dir || { echo "unable to chdir to [$plugins_dir]"; exit 1; }
 
