@@ -33,7 +33,7 @@ function updating_jenkins_master_password ()
 
       sleep 10
   done
-# https://www.bcryptcalculator.com/encode
+# https://www.bcryptcalculator.com/
   echo "Admin config file created"
   admin_password='$2a$10$1LOKaTM.4BdGvju2LsLK4ulAmLrDPr1xbegLVc1RIv9klz5q9TrZO'
   
